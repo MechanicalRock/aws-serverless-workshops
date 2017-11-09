@@ -11,3 +11,16 @@ This repository contains a collection of workshops and other hands on content th
 - [**DevOps**](DevOps) - This workshop shows you how to use the [Serverless Application Model (SAM)](https://github.com/awslabs/serverless-application-model) to build a serverless application using Amazon API Gateway, AWS Lambda, and Amazon DynamoDB. You'll learn how to use SAM from your workstation to release updates to your application, how to build a CI/CD pipeline for your serverless application using AWS CodePipeline and AWS CodeBuild, and how to enhance your pipeline to manage multiple environments for your application.
 
 - [**Image Processing**](ImageProcessing) - This module shows you how to build a serverless image processing application using workflow orchestration in the backend. You'll learn the basics of using AWS Step Functions to orchestrate multiple AWS Lambda functions while leveraging the deep learning-based facial recognition features of Amazon Rekogntion. 
+
+# General Prerequisites
+Before coming into this workshop, you should have the following setup:  
+
+1. Clone the repository **https://github.com/MechanicalRock/aws-serverless-workshops.git** into your local machine.
+
+2. Install Node version 6.10 (https://nodejs.org/en/) if you have not done so yet. 
+
+3. Run "npm install npm@latest -g" in CLI - updates to the latest NPM version. 
+
+4. Install aws-cli, follow these <a target="_blank" href="http://docs.aws.amazon.com/cli/latest/userguide/installing.html">instructions</a> depending on what OS you are using
+
+5. Ensure that your aws credentials are configured in the **~/.aws/credentials** file. Follow these <a target="_blank" href="http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html">instructions</a> if unsure.
