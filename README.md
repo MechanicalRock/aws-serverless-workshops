@@ -2,8 +2,8 @@
 Before coming into this workshop, you should have the following setup:  
 
 1. Clone/Download the repository: 
-    - Have git installed? **git clone https://github.com/MechanicalRock/aws-serverless-workshops.git** 
-    - Don't have git installed? Download the zip file from here. **https://github.com/MechanicalRock/aws-serverless-workshops/archive/master.zip**  
+    - Have git installed? Run "git clone https://github.com/MechanicalRock/aws-serverless-workshops.git" in the CLI
+    - Don't have git installed? Download the zip file from here. https://github.com/MechanicalRock/aws-serverless-workshops/archive/master.zip 
 2. Install Node version 6.10 (https://nodejs.org/en/) if you have not done so yet.  
 3. Run "npm install npm@latest -g" in CLI - updates to the latest NPM version.  
 4. Install aws-cli. Depending on what operating system you are using, navigate to one of these links: 
