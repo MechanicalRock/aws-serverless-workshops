@@ -1,0 +1,18 @@
+version: '2'
+services:
+  serverless:
+    build:
+      context: .
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ~/.aws:/root/.aws
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_PROFILE
+      - AWS_SESSION_TOKEN
+      - AWS_SECURITY_TOKEN
+    entrypoint:
+      - /bin/bash
