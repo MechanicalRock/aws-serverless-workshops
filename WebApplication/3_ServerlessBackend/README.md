@@ -42,7 +42,7 @@ This is the bare minimum of what you need for now. In more complex scenarios, yo
 
 The <b>RidesHandler</b> stanza is the unique resource name and can be set to any appropriate value you see fit. For the purpose of this tutorial, we just call it that.  
 
-What we need to do here is figure out that should be substituted in place of the question mark. To start off, there should be a requestUnicorn.js file in your project. Open it, navigate to line 22 and take note the name of the function.  
+What we need to do here is figure out that should be substituted in place of the question mark. To start off, there should be a requestUnicorn.js file in your project. Open it, navigate to line 25 and take note the name of the function.  
 
 Replace the "?" with something that resembles {file_name}.{function_name}, excluding the curly brackets.  
 
@@ -53,8 +53,8 @@ If you figured it out correctly, we should end up with something looking like be
 
 ```YAML
 functions:
-    RidesHandler:
-        handler: requestUnicorn.handler
+  RidesHandler:
+    handler: requestUnicorn.handler
 ```
 
 </details>
@@ -86,20 +86,20 @@ You can copy and paste the yaml below into the serverless.yml file.
 resources:
   Resources:
     RidesTable:
-        Type: {RESOURCE_TYPE}
-        Properties:
-        TableName: {TABLE_NAME}
-        AttributeDefinitions:
-            -
-            AttributeName: {HASH_FIELD_NAME}
-            AttributeType: S
-        KeySchema:
-            -
-            AttributeName: {HASH_FIELD_NAME}
-            KeyType: HASH
-        ProvisionedThroughput:
-            ReadCapacityUnits: 1
-            WriteCapacityUnits: 1
+      Type: {RESOURCE_TYPE}
+      Properties:
+      TableName: {TABLE_NAME}
+      AttributeDefinitions:
+        -
+          AttributeName: {HASH_FIELD_NAME}
+          AttributeType: S
+      KeySchema:
+        -
+          AttributeName: {HASH_FIELD_NAME}
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
 ```  
 
 Looking at the above snippet we need to figure out what to replace the variables in curly braces with.  
@@ -131,12 +131,12 @@ For simplicity sake, we will just specify a default role that will be assumed by
 We should start by appending the below snippet under the <b>provider</b> section of the serverless.yml file. Since we only need to interact with DynamoDB in our application, theres only one specification that is required. 
 
 ```YAML
-  iamRoleStatements:
-    - Effect: "Allow"
-      Action:
-        - "{SERVICE_NAMESPACE}:{API_METHOD}"
-      Resource: 
-        - "Fn::{FUNCTION_NAME}": [{TABLE_RESOURCE_NAME}, Arn]
+iamRoleStatements:
+  - Effect: "Allow"
+    Action:
+      - "{SERVICE_NAMESPACE}:{API_METHOD}"
+    Resource: 
+      - "Fn::{FUNCTION_NAME}": [{TABLE_RESOURCE_NAME}, Arn]
 ```  
 
 Once again, there are curly braces where we need to figure out what needs to be substituted. Starting from the top left, we have <b>SERVICE_NAMESPACE</b>. This value should be what we use to uniquely identify a particular AWS service.  

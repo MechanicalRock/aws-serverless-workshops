@@ -36,10 +36,10 @@ Its time to expose our Lambda function in the form of a Restful API with a prope
 
 ```YAML
 functions:
-    RidesHandler:
-        handler: requestUnicorn.handler
-        events:
-            - ? 
+  RidesHandler:
+    handler: requestUnicorn.handler
+    events:
+      - ? 
 ``` 
 
 What you need to do now is specify a lambda-proxy integration that is contactable via a "post" to the endpoint "ride". The serverless <a target="_blank" href="https://serverless.com/framework/docs/providers/aws/events/apigateway/">API Gateway documentation</a> should provide you more information on different ways you can achieve this.   
@@ -55,13 +55,13 @@ Once you have filled in the missing fields, your yaml file should look quite sim
 
 ```YAML
 functions:
-    RidesHandler:
-        handler: requestUnicorn.handler
-        events:
-            - http:
-                path: ride
-                method: post
-                cors: true
+  RidesHandler:
+    handler: requestUnicorn.handler
+    events:
+      - http:
+          path: ride
+          method: post
+          cors: true
 ``` 
 
 </details>
@@ -80,11 +80,11 @@ What we need to do now is set the Cognito User Pool we created in module 2 as an
 
 ```YAML
 functions:
-    RidesHandler:
-        handler: requestUnicorn.handler
-        events:
-            ...
-        authorizer: ?
+  RidesHandler:
+    handler: requestUnicorn.handler
+    events:
+      ...
+    authorizer: ?
 ```  
 
 The best resources on setting this up can be found in the <a target="_blank" href="https://serverless.com/framework/docs/providers/aws/events/apigateway/#http-endpoints-with-custom-authorizers">http endpoint with custom authorizer documentation</a>, in our case its under the section: <i>"You can also configure an existing Cognito User Pool as the authorizer, as shown in the following example:"</i>.  
