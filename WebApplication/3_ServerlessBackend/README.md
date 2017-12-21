@@ -438,7 +438,7 @@ For this module you will test the function that you built using the AWS Lambda c
     }
 }
 ```
+</details>
 
 After you have successfully tested your new function using the Lambda console, you can move on to the next module, [RESTful APIs](../4_RESTfulAPIs).
 
-</details>
