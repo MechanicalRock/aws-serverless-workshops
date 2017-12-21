@@ -38,4 +38,4 @@ This repository contains a collection of workshops and other hands on content th
 
 ## Contributors
 Mechanical Rock would also like to thank the following people for contributing to this workshop:
-* @craigw
+@craigw
