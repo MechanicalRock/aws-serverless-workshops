@@ -112,7 +112,7 @@ Your best resource for that information is the <a target="_blank" href="https://
 </details>
 <br>
 
-Next, lets return to the code in requestUnicorn.js and search for the function called <b>recordUnicorn</b>. We need to find out the table name and as expected for your standard dynamodb table, we need to define at minimum one main partition/hash key. Read the few lines of code and substitute <b>TABLE_NAME</b> and <b>HASH_FIELD_NAME</b> with the appropriate values. 
+Next, lets return to the code in requestUnicorn.js and search for the function called <b>recordRide</b>. We need to find out the table name and as expected for your standard dynamodb table, we need to define at minimum one main partition/hash key. Read the few lines of code and substitute <b>TABLE_NAME</b> and <b>HASH_FIELD_NAME</b> with the appropriate values. 
 
 <details>
 <summary><strong>See answer (click to expand)</strong></summary>
