@@ -334,6 +334,7 @@ If you completed module 2 manually, you can edit the `config.js` file you have s
 1. Choose **Upload** on the `Review` section.
 
 </p></details>
+</details>
 
 ## Implementation Validation
 
@@ -350,5 +351,3 @@ If you completed module 2 manually, you can edit the `config.js` file you have s
 Congratulations, you have completed the Wild Rydes Web Application Workshop! Check out our [other workshops](../../README.md#workshops) covering additional serverless use cases.
 
 See this workshop's [cleanup guide](../9_CleanUp) for instructions on how to delete the resources you've created.
-
-</details>
