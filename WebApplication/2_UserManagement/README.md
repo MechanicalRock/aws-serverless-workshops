@@ -130,9 +130,11 @@ The [/js/config.js][configjs] file contains settings for the user pool ID, app c
 
 :wrench: In this module you've used user pools to create a completely hosted and managed user management system that will allow us to authenticate your users and manage their user information. From there you've updated the website to use the user pool and utlized the AWS SDKs to provide a signin form on the site.
 
-### Next
+### Next - Choose Your Own Adventure
 
-:white_check_mark: After you have successfully logged into your web application, you can proceed to the next module, [Serverless Backend][serverless-backend].
+:white_check_mark: After you have successfully logged into your web application, you can proceed to the next module.
+
+From here, the path diverges depending on whether you wish to configure things the [AWS Console][serverless-backend], or by using [Serverless Framework][serverless-backend-serverless] .
 
 ### Extra
 
@@ -143,6 +145,7 @@ The [/js/config.js][configjs] file contains settings for the user pool ID, app c
 [cognito]: https://aws.amazon.com/cognito/
 [setup]: ../0_Setup/
 [serverless-backend]: ../3_ServerlessBackend/
+[serverless-backend-serverless]: ../3_ServerlessBackend_ServerlessFramework/
 [cognito-console]: https://console.aws.amazon.com/cognito/home
 [configjs]: ../1_StaticWebHosting/website/js/config.js
 [jwt-decoder]: https://jwt.io/
