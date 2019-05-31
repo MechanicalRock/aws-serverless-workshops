@@ -14,15 +14,25 @@ The primary focus here is learning how to use the serverless framework to provis
 
 You may notice that some reference materials are from the official Cloudformation and others from Serverless. That is because for various things, there is a 1:1 overlap in syntax that Serverless relies on Cloudformation for documentation  (i.e. specifying <b>resources:</b>).  
 
-If you wish to know more, visit the <a target="_blank" href="https://serverless.com/framework/docs/">serverless website</a>. You will notice that there are adaptations for Azure, Google Cloud, AWS and so forth. Since we are using AWS, you should look there.  
+If you wish to know more, visit the <a target="_blank" href="https://serverless.com/framework/docs/providers/aws/">serverless website</a>.
+
 Lets get started!  
 
-### 1. Prerequisites
+### 1. SetUp
 
-1. Install Node version 6.10 (https://nodejs.org/en/) if you have not done so yet. 
-2. Run "npm install npm@latest -g" in CLI - updates to the latest NPM version 
-3. Run "npm install -g serverless" in CLI - installs the serverless utility on your machine so it can be run in anywhere  
-4. Choose a code editor (i.e. Atom, Visual Code etc) and open WebApplication/3_ServerlessBackend project folder  
+Your AWS Cloud9 environment should already have [NodeJS](https://nodejs.org/en/) installed.
+
+1. In order to install Serverless Framework, run the following commands in your terminal
+```
+npm install npm@latest -g
+npm install -g serverless
+```
+
+2. Create a new folder in the root directory of your Cloud9 workspace for your api: `wildrydes-api`
+
+3. Create a new file `requestUnicorn.js` in `wildrydes-api` folder, and copy the contents of [requestUnicorn.js](requestUnicorn.js).
+
+4. Create a new file `serverless.yml` in `wildrydes-api` folder, and copy the context of [serverless.yml](serverless.yml)
 
 <br>
 
@@ -42,7 +52,7 @@ This is the bare minimum of what you need for now. In more complex scenarios, yo
 
 The <b>RidesHandler</b> stanza is the unique resource name and can be set to any appropriate value you see fit. For the purpose of this tutorial, we just call it that.  
 
-What we need to do here is figure out that should be substituted in place of the question mark. To start off, there should be a requestUnicorn.js file in your project. Open it, navigate to line 25 and take note the name of the function.  
+What we need to do here is figure out what should be substituted in place of the question mark. To start off, there should be a requestUnicorn.js file in your project. Open it, navigate to line 25 and take note the name of the function.  
 
 Replace the "?" with something that resembles {file_name}.{function_name}, excluding the curly brackets.  
 
@@ -215,7 +225,11 @@ resources:
 
 Well, that should be all the infrastructure we need for now. We are ready to begin provisioning resources on AWS. So, bring up the command line and ensure you are navigated to root project level. 
 
-Execute the command "serverless deploy" and watch the logs.  
+Execute the following command and watch the logs.  
+
+```
+serverless deploy
+```
 
 If the deployment ran successfully, login to AWS and navigate to Cloudformation service and confirm that there is a new stack called "unicornservice-dev". This name is formed as a combination of the <b>service name</b> and <b>stage</b>.  
 
@@ -245,7 +259,10 @@ First create a JSON file and paste in the data below. This will be our mock requ
 }
 ```  
 
-Then run "<b>serverless invoke --function RidesHandler -p {name_of_file}.json</b>" in the CLI and verify that the execution succeeded and that the function result looks similar the following: 
+Then run the following in the CLI:
+`serverless invoke --function RidesHandler -p {name_of_file}.json`  
+
+Verify that the execution succeeded and that the function result looks similar to:
 
 ```JSON
 {

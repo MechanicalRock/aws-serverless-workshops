@@ -19,20 +19,15 @@ You may notice that some reference materials are from the official Cloudformatio
 
 If you wish to know more, visit the <a target="_blank" href="https://serverless.com/framework/docs/">serverless website</a>. You will notice that there are adaptations for Azure, Google Cloud, AWS and so forth. Since we are using AWS, you should look there.  
 
-### 1. Prerequisites
+### 1. Setup
 
-1. Install Node version 6.10 (https://nodejs.org/en/) if you have not done so yet.  
-2. Run "npm install npm@latest -g" in CLI - updates to the latest NPM version 
-3. Run "npm install -g serverless" in CLI - installs the serverless utility on your machine so it can be run in anywhere  
-4. Choose a code editor (i.e. Atom, Visual Code etc) and open WebApplication/4_RESTfulAPIs project folder 
-
-<br>
+:heavy_exclamation_mark: Ensure you've completed the [setup][../3_ServerlessBackend] from the previous module before beginning this module.
 
 ### 2. Create a New REST API
 
-As before, there is a serverless yml file that is readily available for use. Otherwise, you can replace its contents with the one you have been working with in the past modules.
+As before, there is a serverless yml file that is readily available for use in this directory. Otherwise, you continue working with your version from the previous module.
 
-Its time to expose our Lambda function in the form of a Restful API with a proper endpoint. To help you get started, you should copy and paste the <b>events</b> stanza in the serverless.yml file so it looks similar to below. 
+Its time to expose our Lambda function in the form of a Restful API endpoint. To help you get started, you should copy and paste the <b>events</b> stanza in the serverless.yml file so it looks similar to below. 
 
 ```YAML
 functions:
@@ -68,7 +63,9 @@ functions:
 
 <br>
 
-Go ahead and run "serverless deploy" in the CLI. That should provision a new API gateway resource and serverless should in turn print out the endpoint url. However attempting to POST to that url will result in a message returned "Authorization not configured". That brings us to the final step.  
+Run `serverless deploy` in the CLI. 
+
+That should provision a new API gateway resource and serverless should in turn print out the endpoint url. However attempting to POST to that url will result in a message returned "Authorization not configured". That brings us to the final step.  
 
 <br>
 

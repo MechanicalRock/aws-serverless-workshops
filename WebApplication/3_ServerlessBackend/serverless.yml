@@ -2,6 +2,6 @@ service: unicornservice
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs8.10
   stage: dev
   region: ap-southeast-2 
