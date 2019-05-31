@@ -2,6 +2,8 @@
 
 This page provides instructions for cleaning up the resources created during the preceding modules.
 
+If you followed the Serverless Framework path, please follow [these cleanup instructions][cleanup-serverless]
+
 ## Resource Cleanup Instructions
 
 ### 1. Module 6 - AppSync GraphQL API Cleanup
@@ -156,3 +158,4 @@ Delete the Cloud9 Development environment created today.
 [region-services]: https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/
 [setup]: ../0_Setup/
 [user-management]: ../2_UserManagement/
+[cleanup-serverless]: ./README-ServerlessFramework.md
