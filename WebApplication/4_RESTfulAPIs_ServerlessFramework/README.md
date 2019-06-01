@@ -71,107 +71,46 @@ That should provision a new API gateway resource and serverless should in turn p
 
 ### 3. Create a Cognito User Pools Authorizer
 
-Amazon API Gateway can use the JWT tokens returned by Cognito User Pools to authenticate API calls. In this step you'll configure an authorizer for your API to use the user pool you created in module 2.  
-
-What we need to do now is set the Cognito User Pool we created in module 2 as an authorizer to our <b>RidesHandler</b> lambda function. Below is a snippet that shows us how the <b>authorizer</b> stanza is written. You will need to find out what goes in it.  
-
-```YAML
-functions:
-  RidesHandler:
-    handler: requestUnicorn.handler
-    events:
-      ...
-    authorizer: ?
-```  
-
-The best resources on setting this up can be found in the <a target="_blank" href="https://serverless.com/framework/docs/providers/aws/events/apigateway/#http-endpoints-with-custom-authorizers">http endpoint with custom authorizer documentation</a>, in our case its under the section: <i>"You can also configure an existing Cognito User Pool as the authorizer, as shown in the following example:"</i>.  
-
-<details><summary><strong>The handler function yaml should look similar to: (click to expand)</strong></summary>
-
-```YAML
-functions:
-  RidesHandler:
-    handler: requestUnicorn.handler
-    events:
-      - http: 
-          integration: lambda-proxy
-          path: ride        
-          method: post
-          cors: true
-          authorizer:
-            name: request-ride-auth
-            arn: arn:aws:cognito-idp:ap-southeast-2:XXXXXXXXX:userpool/ap-southeast-2_XXXXXXXXX
-```
-
-</details>  
-
-<br>
-
-### 4. Update Web App Configuration
-
-We now should have the TWO endpoints we need for the web application to run. Lets go back to module 1 and update the **invokeUrl** setting under the **api** key in the config.js file. Set the value to the **Invoke URL** for the deployment stage your created in the previous section.    
-
-<details><summary><strong>
-An example of a complete `config.js` file is included below. Note, the actual values in your file will be different.</strong></summary>
-
-```JavaScript
-window._config = {
-    cognito: {
-        userPoolId: 'us-west-2_uXboG5pAb', // e.g. us-east-2_uXboG5pAb
-        userPoolClientId: '25ddkmj4v6hfsfvruhpfi7n4hv', // e.g. 25ddkmj4v6hfsfvruhpfi7n4hv
-        region: 'us-west-2' // e.g. us-east-2
-    },
-    api: {
-        invokeUrl: 'https://rc7nyt4tql.execute-api.us-west-2.amazonaws.com/prod' // e.g.
-    }
-};
-```
-</details>
-
-
-<br>
-<details>
-<summary><strong>Manual steps (expand for details)</strong></summary>
-
-## Implementation Instructions
-
-:heavy_exclamation_mark: Ensure you've completed the [Serverless Backend][serverless-backend] step before beginning
-the workshop.
-
-Each of the following sections provides an implementation overview and detailed, step-by-step instructions. The overview should provide enough context for you to complete the implementation if you're already familiar with the AWS Management Console or you want to explore the services yourself without following a walkthrough.
-
-### 1. Create a New REST API
-Use the Amazon API Gateway console to create a new API named `WildRydes`.
-
-**:white_check_mark: Step-by-step directions**
-1. Go to the [Amazon API Gateway Console][api-gw-console]
-1. Choose **Create API**.
-1. Select **REST**, **New API** and enter `WildRydes` for the **API Name**.
-1. Select `Edge optimized` from the **Endpoint Type** dropdown.
-    ***Note***: Edge optimized are best for public services being accessed from the Internet. Regional endpoints are typically used for APIs that are accessed primarily from within the same AWS Region. Private APIs are for internal services inside of an Amazon VPC.
-1. Choose **Create API**
-
-    ![Create API screenshot](../images/create-api.png)
-
-### 2. Create a Cognito User Pools Authorizer
-
 #### Background
 Amazon API Gateway can use the JWT tokens returned by Cognito User Pools to authenticate API calls. In this step you'll configure an authorizer for your API to use the user pool you created in [User Management][user-management].
 
-#### High-Level Instructions
-In the Amazon API Gateway console, create a new Cognito user pool authorizer for your API. Configure it with the details of the user pool that you created in the previous module. You can test the configuration in the console by copying and pasting the auth token presented to you after you log in via the /signin.html page of your current website.
-
 **:white_check_mark: Step-by-step directions**
-1. Under your newly created API, choose **Authorizers**.
-1. Choose **Create New Authorizer**.
-1. Enter `WildRydes` for the Authorizer name.
-1. Select **Cognito** for the type.
-1. In the Region drop-down under **Cognito User Pool**, select the Region where you created your Cognito user pool in the User Management module (by default the current region should be selected).
-1. Enter `WildRydes` (or the name you gave your user pool) in the **Cognito User Pool** input.
-1. Enter `Authorization` for the **Token Source**.
-1. Choose **Create**.
+1. Update the `serverless.yml` to set the Cognito User Pool we created in [User Management][user-management] as an authorizer to our <b>RidesHandler</b> lambda function. Below is a snippet that shows us how the <b>authorizer</b> stanza is written. You will need to find out what goes in it.  
 
-    ![Create user pool authorizer screenshot](../images/create-user-pool-authorizer.png)
+    ```YAML
+    functions:
+    RidesHandler:
+        handler: requestUnicorn.handler
+        events:
+        ...
+        authorizer: ?
+    ```  
+
+    The best resources on setting this up can be found in the <a target="_blank" href="https://serverless.com/framework/docs/providers/aws/events/apigateway/#http-endpoints-with-custom-authorizers">http endpoint with custom authorizer documentation</a>, in our case its under the section: <i>"You can also configure an existing Cognito User Pool as the authorizer, as shown in the following example:"</i>.  
+
+    <details><summary><strong>The handler function yaml should look similar to: (click to expand)</strong></summary>
+
+    ```YAML
+    functions:
+    RidesHandler:
+        handler: requestUnicorn.handler
+        events:
+        - http: 
+            integration: lambda-proxy
+            path: ride        
+            method: post
+            cors: true
+            authorizer:
+                name: request-ride-auth
+                arn: arn:aws:cognito-idp:ap-southeast-2:XXXXXXXXX:userpool/ap-southeast-2_XXXXXXXXX
+    ```
+
+    </details>  
+
+
+2. Deploy your updated API from the terminal: 
+
+    ```serverless deploy```
 
 #### Verify your authorizer configuration
 
@@ -179,56 +118,18 @@ In the Amazon API Gateway console, create a new Cognito user pool authorizer for
 1. Open a new browser tab and visit `/ride.html` under your website's domain.
 1. If you are redirected to the sign-in page, sign in with the user you created in the last module. You will be redirected back to `/ride.html`.
 1. Copy the auth token from the notification on the `/ride.html`,
-1. Go back to previous tab where you have just finished creating the Authorizer
+1. In the AWS Console, navigate to the [API Gateway Console][api-gw-console]
+1. Select your API `dev-unicornservice`
+1. Select `Authorizers` in the left hand navigation pane
 1. Click **Test** at the bottom of the card for the authorizer.
 1. Paste the auth token into the **Authorization Token** field in the popup dialog.
     ![Test Authorizer screenshot](../images/apigateway-test-authorizer.png)
 
 1. Click **Test** button and verify that the response code is 200 and that you see the claims for your user displayed.
 
-### 3. Create a new resource and method
-Create a new resource called /ride within your API. Then create a POST method for that resource and configure it to use a Lambda proxy integration backed by the RequestUnicorn function you created in the first step of this module.
 
-**:white_check_mark: Step-by-step directions**
-1. In the left nav, click on **Resources** under your WildRydes API.
-1. From the **Actions** dropdown select **Create Resource**.
-1. Enter `ride` as the **Resource Name**.
-1. Ensure the **Resource Path** is set to `ride`.
-1. Select **Enable API Gateway CORS** for the resource.
-1. Click **Create Resource**.
+### 4. Update Web App Configuration
 
-    ![Create resource screenshot](../images/create-resource.png)
-
-1. With the newly created `/ride` resource selected, from the **Action** dropdown select **Create Method**.
-1. Select `POST` from the new dropdown that appears, then **click the checkmark**.
-
-    ![Create method screenshot](../images/create-method.png)
-1. Select **Lambda Function** for the integration type.
-1. Check the box for **Use Lambda Proxy integration**.
-1. Select the Region you are using for **Lambda Region**.
-1. Enter the name of the function you created in the previous module, `RequestUnicorn`, for **Lambda Function**.
-1. Choose **Save**. Please note, if you get an error that you function does not exist, check that the region you selected matches the one you used in the previous module.
-
-    ![API method integration screenshot](../images/api-integration-setup.png)
-
-1. When prompted to give Amazon API Gateway permission to invoke your function, choose **OK**.
-1. Choose on the **Method Request** card.
-1. Choose the pencil icon next to **Authorization**.
-1. Select the WildRydes Cognito user pool authorizer from the drop-down list, and click the checkmark icon.
-
-    ![API authorizer configuration screenshot](../images/api-authorizer.png)
-
-### 4. Deploy Your API
-From the Amazon API Gateway console, choose Actions, Deploy API. You'll be prompted to create a new stage. You can use prod for the stage name.
-
-**:white_check_mark: Step-by-step directions**
-1. In the **Actions** drop-down list select **Deploy API**.
-1. Select **[New Stage]** in the **Deployment stage** drop-down list.
-1. Enter `prod` for the **Stage Name**.
-1. Choose **Deploy**.
-1. Note the **Invoke URL**. You will use it in the next section.
-
-### 5. Update the Website Config
 Update the /js/config.js file in your website deployment to include the invoke URL of the stage you just created. You should copy the invoke URL directly from the top of the stage editor page on the Amazon API Gateway console and paste it into the \_config.api.invokeUrl key of your sites /js/config.js file. Make sure when you update the config file it still contains the updates you made in the previous module for your Cognito user pool.
 
 **:white_check_mark: Step-by-step directions**
@@ -283,7 +184,10 @@ Update the /js/config.js file in your website deployment to include the invoke U
 
 ### Next
 
+:white_check_mark: In the [next module][oauth2], we shall use OAuth 2.0 flows to create a WildRydes a platform.
+
 :white_check_mark: See this workshop's [cleanup guide][cleanup] for instructions on how to delete the resources you've created.
+
 
 [amplify-console]: https://aws.amazon.com/amplify/console/
 [amplify-console-console]: https://console.aws.amazon.com/amplify/home
@@ -304,3 +208,4 @@ Update the /js/config.js file in your website deployment to include the invoke U
 [setup]: ../0_Setup/
 [static-web-hosting]: ../1_StaticWebHosting/
 [user-management]: ../2_UserManagement/
+[oauth2]: ../5_OAuth
