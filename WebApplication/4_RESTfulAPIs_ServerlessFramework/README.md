@@ -184,7 +184,7 @@ Update the /js/config.js file in your website deployment to include the invoke U
 
 ### Next
 
-:white_check_mark: In the [next module][oauth2], we shall use OAuth 2.0 flows to create a WildRydes a platform.
+:white_check_mark: In the [next module][oauth2], we shall use OAuth 2.0 flows to create a Wild Rydes a platform.
 
 :white_check_mark: See this workshop's [cleanup guide][cleanup] for instructions on how to delete the resources you've created.
 
