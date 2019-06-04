@@ -45,4 +45,5 @@ AWS Account.
 [user-management]: 2_UserManagement/
 [serverless-backend]: 3_ServerlessBackend/
 [restful-apis]: 4_RESTfulAPIs/
+[sns-notifications]: 7_SNSNotifications
 [cleanup]: 9_CleanUp/
