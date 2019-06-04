@@ -247,3 +247,4 @@ You've completed the testing of your AWS AppSync based GraphQL API!
 [restful-apis]: ../4_RESTfulAPIs/
 [static-web-hosting]: ../1_StaticWebHosting/
 [user-management]: ../2_UserManagement/
+[serverless-backend]: ../3_ServerlessBackend/
