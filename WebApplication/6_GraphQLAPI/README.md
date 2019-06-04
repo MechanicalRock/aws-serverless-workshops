@@ -242,6 +242,7 @@ You've completed the testing of your AWS AppSync based GraphQL API!
 [dynamodb]: https://aws.amazon.com/dynamodb/
 [history-page]: ../7_RideHistoryPage/
 [iam-console]: https://console.aws.amazon.com/iam/home
+[cognito-console]: https://us-east-2.console.aws.amazon.com/cognito/
 [lambda-console]: https://console.aws.amazon.com/lambda/home
 [lambda]: https://aws.amazon.com/lambda/
 [restful-apis]: ../4_RESTfulAPIs/
